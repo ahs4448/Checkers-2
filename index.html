@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+</head>
+
+<!-- As a link -->
+<nav class="navbar navbar-light bg-light" id="navigation">
+
+  <h3><span class="playerOne">Player 1</span> </h3>
+  <h3><span class="playerTwo">Player 2</span> </h3>
+
+  <a class="navbar-brand" href="#">Checkers</a>
+  <button id="undo"> Unselect</button>
+</nav>
+
+
+
+<!-- the board -->
+<div id="container">
+
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="1" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="2" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="3" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="4" data="odd-from-top">
+  </div>
+
+  <div class="valid" value="5" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="6" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="7" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="8" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="9" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="10" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="11" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="12" data="odd-from-top">
+  </div>
+
+  <div class="valid" value="13" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="14" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="15" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="16" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="17" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="18" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="19" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="20" data="odd-from-top">
+  </div>
+
+  <div class="valid" value="21" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="22" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="23" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="24" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="25" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="26" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="27" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="28" data="odd-from-top">
+  </div>
+
+  <div class="valid" value="29" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="30" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="31" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="32" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+</div>
+
+
+<!-- the pieces -->
+
+<div id="container2">
+
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="1" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="2" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="3" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="4" data="odd-from-top">
+  </div>
+
+  <div class="valid2" position="5" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="6" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="7" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="8" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="9" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="10" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="11" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid2" position="12" data="odd-from-top">
+  </div>
+
+  <div class="valid" value="13" data="even-from-top" style="background-color: black;">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="14" data="even-from-top" style="background-color: black;">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="15" data="even-from-top" style="background-color: black;">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="16" data="even-from-top" style="background-color: black;">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="17" data="odd-from-top" style="background-color: black;">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="18" data="odd-from-top" style="background-color: black;">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="19" data="odd-from-top" style="background-color: black;">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid" value="20" data="odd-from-top" style="background-color: black;">
+  </div>
+
+  <div class="valid3" position="21" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid3" position="22" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid3" position="23" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid3" position="24" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid3" position="25" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid3" position="26" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid3" position="27" data="odd-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid3" position="28" data="odd-from-top">
+  </div>
+
+  <div class="valid3" position="29" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid3" position="30" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid3" position="31" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+  <div class="valid3" position="32" data="even-from-top">
+  </div>
+
+  <div class="piece">
+  </div>
+
+</div>
+
+
+
+
+
+<script>
+
+
+let arr = [];
+
+let playerOne = $(".valid2");
+let playerTwo = $(".valid3");
+let emptySpot = $(".valid");
+let positionNum = 0;
+let positionNumTwo = 0;
+let destinationNum = 0;
+let destinationNumTwo =0;
+let PlayerTurn = "";
+let isKing = "";
+let row = "";
+
+function makeKing(val1,val2,val3,val4){
+  
+  if ($(`[position='${val1}']`).attr("class") == "valid2") {
+      $(`[position='${val1}']`).addClass("kingOne")
+      alert('king me p1');
+      isKing = "P1";
+    }
+    if ($(`[position='${val2}']`).attr("class") == "valid2") {
+      $(`[position='${val2}']`).addClass("kingOne")
+      alert('king me p1');
+      isKing = "P1";
+    }
+    if ($(`[position='${val3}']`).attr("class") == "valid2") {
+      $(`[position='${val3}']`).addClass("kingOne")
+      alert('king me p1');
+      isKing = "P1";
+    }
+    if ($(`[position='${val4}']`).attr("class") == "valid2") {
+      $(`[position='${val4}']`).addClass("kingOne")
+      alert('king me p1');
+      isKing = "P1";
+    }
+}
+
+function makeKingP2(val1,val2,val3,val4){
+  
+  if ($(`[position='${val1}']`).attr("class") == "valid3") {
+      $(`[position='${val1}']`).addClass("kingTwo")
+      alert('king me p2');
+    }
+    if ($(`[position='${val2}']`).attr("class") == "valid3") {
+      $(`[position='${val2}']`).addClass("kingTwo")
+      alert('king me p2');
+    }
+    if ($(`[position='${val3}']`).attr("class") == "valid3") {
+      $(`[position='${val3}']`).addClass("kingTwo")
+      alert('king me p2');
+    }
+    if ($(`[position='${val4}']`).attr("class") == "valid3") {
+      $(`[position='${val4}']`).addClass("kingTwo")
+      alert('king me p2');
+    }
+}
+
+function doubleSkip(){
+  setTimeout(function(){ 
+  
+  positionNum = destinationNum;
+  // $(".selected").attr("position", `${destinationNum}`);
+  if($(`[value='${positionNum + 9}']`).attr("class") == "valid"  &&  $(`[position='${positionNum + 5}']`).attr("class") == "valid3" && $(`[position='${positionNum + 9}']`).attr("class") !== "valid3" && row == "odd-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNum + 9}']`).css("background-color","grey")
+    $(`[position='${positionNum + 7}']`).attr("class") == "valid3" || $(`[position='${positionNum + 7}']`).attr("class") == "valid2" ? $(`[value='${positionNum + 7}']`).css("background-color","black") : $(`[value='${positionNum + 7}']`).css("background-color","grey")
+   return;
+  }if($(`[value='${positionNum + 7}']`).attr("class") == "valid" && $(`[position='${positionNum + 4}']`).attr("class") == "valid3" && $(`[position='${positionNum + 7}']`).attr("class") !== "valid3"  &&  row == "odd-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNum + 7}']`).css("background-color","grey")
+    $(`[position='${positionNum + 9}']`).attr("class") == "valid3" || $(`[position='${positionNum + 9}']`).attr("class") == "valid2"? $(`[value='${positionNum + 9}']`).css("background-color","black") : $(`[value='${positionNum + 9}']`).css("background-color","grey")
+    return;
+  }if($(`[value='${positionNum + 9}']`).attr("class") == "valid"  && $(`[position='${positionNum + 4}']`).attr("class") == "valid3" && $(`[position='${positionNum + 9}']`).attr("class") !== "valid3"  && row == "even-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNum + 9}']`).css("background-color","grey")
+    $(`[position='${positionNum + 7}']`).attr("class") == "valid3" || $(`[position='${positionNum + 7}']`).attr("class") == "valid2"? $(`[value='${positionNum + 7}']`).css("background-color","black") : $(`[value='${positionNum + 7}']`).css("background-color","grey")
+    return;
+  }if($(`[value='${positionNum + 7}']`).attr("class") == "valid"  && $(`[position='${positionNum + 3}']`).attr("class") == "valid3"  && $(`[position='${positionNum + 7}']`).attr("class") !== "valid3" && row == "even-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNum + 7}']`).css("background-color","grey") 
+    $(`[position='${positionNum + 9}']`).attr("class") == "valid3" || $(`[position='${positionNum + 9}']`).attr("class") == "valid2" ? $(`[value='${positionNum + 9}']`).css("background-color","black") : $(`[value='${positionNum + 9}']`).css("background-color","grey")
+    return;
+  }else{
+
+    $(".valid").css("background-color","black");
+    $(".selected").removeClass("selected");
+    makeKing(29,30,31,32);
+    positionNum = 0;
+    PlayerTurn = "P2";
+  }
+}, 1000);
+}
+
+function doubleSkipKing(){
+  setTimeout(function(){ 
+  
+  positionNum = destinationNum;
+  // $(".selected").attr("position", `${destinationNum}`);
+  if($(`[value='${positionNum + 9}']`).attr("class") == "valid"  &&  $(`[position='${positionNum + 5}']`).attr("class") == "valid3" && $(`[position='${positionNum + 9}']`).attr("class") !== "valid3" && row == "odd-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNum + 9}']`).css("background-color","grey")
+    $(`[position='${positionNum + 7}']`).attr("class") == "valid3" || $(`[position='${positionNum + 7}']`).attr("class") == "valid2" ? $(`[value='${positionNum + 7}']`).css("background-color","black") : $(`[value='${positionNum + 7}']`).css("background-color","grey")
+    $(`[position='${positionNum - 7}']`).attr("class") == "valid3" || $(`[position='${positionNum - 7}']`).attr("class") == "valid2" ? $(`[value='${positionNum - 7}']`).css("background-color","black") : $(`[value='${positionNum - 7}']`).css("background-color","grey")
+   return;
+  }if($(`[value='${positionNum + 7}']`).attr("class") == "valid" && $(`[position='${positionNum + 4}']`).attr("class") == "valid3" && $(`[position='${positionNum + 7}']`).attr("class") !== "valid3"  &&  row == "odd-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNum + 7}']`).css("background-color","grey")
+    $(`[position='${positionNum + 9}']`).attr("class") == "valid3" || $(`[position='${positionNum + 9}']`).attr("class") == "valid2"? $(`[value='${positionNum + 9}']`).css("background-color","black") : $(`[value='${positionNum + 9}']`).css("background-color","grey")
+    $(`[position='${positionNum - 9}']`).attr("class") == "valid3" || $(`[position='${positionNum - 9}']`).attr("class") == "valid2"? $(`[value='${positionNum - 9}']`).css("background-color","black") : $(`[value='${positionNum - 9}']`).css("background-color","grey")
+    return;
+  }if($(`[value='${positionNum + 9}']`).attr("class") == "valid"  && $(`[position='${positionNum + 4}']`).attr("class") == "valid3" && $(`[position='${positionNum + 9}']`).attr("class") !== "valid3"  && row == "even-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNum + 9}']`).css("background-color","grey")
+    $(`[position='${positionNum + 7}']`).attr("class") == "valid3" || $(`[position='${positionNum + 7}']`).attr("class") == "valid2"? $(`[value='${positionNum + 7}']`).css("background-color","black") : $(`[value='${positionNum + 7}']`).css("background-color","grey")
+    $(`[position='${positionNum - 7}']`).attr("class") == "valid3" || $(`[position='${positionNum - 7}']`).attr("class") == "valid2"? $(`[value='${positionNum - 7}']`).css("background-color","black") : $(`[value='${positionNum - 7}']`).css("background-color","grey")
+    return;
+  }if($(`[value='${positionNum + 7}']`).attr("class") == "valid"  && $(`[position='${positionNum + 3}']`).attr("class") == "valid3"  && $(`[position='${positionNum + 7}']`).attr("class") !== "valid3" && row == "even-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNum + 7}']`).css("background-color","grey") 
+    $(`[position='${positionNum + 9}']`).attr("class") == "valid3" || $(`[position='${positionNum + 9}']`).attr("class") == "valid2" ? $(`[value='${positionNum + 9}']`).css("background-color","black") : $(`[value='${positionNum + 9}']`).css("background-color","grey")
+    $(`[position='${positionNum + 9}']`).attr("class") == "valid3" || $(`[position='${positionNum - 9}']`).attr("class") == "valid2" ? $(`[value='${positionNum - 9}']`).css("background-color","black") : $(`[value='${positionNum - 9}']`).css("background-color","grey")
+    return;
+  }else{
+
+    $(".valid").css("background-color","black");
+    $(".selected").removeClass("selected");
+    makeKing(29,30,31,32);
+    positionNum = 0;
+    PlayerTurn = "P2";
+  }
+}, 1000);
+}
+
+
+function doubleSkipP2(){
+  setTimeout(function(){ 
+  
+  positionNumTwo = destinationNum;
+  // $(".selected").attr("position", `${destinationNum}`);
+  if($(`[value='${positionNumTwo - 9}']`).attr("class") == "valid"  &&  $(`[position='${positionNumTwo - 5}']`).attr("class") == "valid2" && $(`[position='${positionNumTwo - 9}']`).attr("class") !== "valid2" && row == "even-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNumTwo - 9}']`).css("background-color","grey")
+    $(`[position='${positionNumTwo - 7}']`).attr("class") == "valid3" || $(`[position='${positionNumTwo - 7}']`).attr("class") == "valid2" ? $(`[value='${positionNumTwo - 7}']`).css("background-color","black") : $(`[value='${positionNumTwo - 7}']`).css("background-color","grey")
+   return;
+  }if($(`[value='${positionNumTwo - 7}']`).attr("class") == "valid" && $(`[position='${positionNumTwo - 4}']`).attr("class") == "valid2" && $(`[position='${positionNumTwo - 7}']`).attr("class") !== "valid2"  &&  row == "even-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNumTwo - 7}']`).css("background-color","grey")
+    $(`[position='${positionNumTwo - 9}']`).attr("class") == "valid3" || $(`[position='${positionNumTwo - 9}']`).attr("class") == "valid2"? $(`[value='${positionNumTwo - 9}']`).css("background-color","black") : $(`[value='${positionNumTwo - 9}']`).css("background-color","grey")
+    return;
+  }if($(`[value='${positionNumTwo - 9}']`).attr("class") == "valid"  && $(`[position='${positionNumTwo - 4}']`).attr("class") == "valid2" && $(`[position='${positionNumTwo - 9}']`).attr("class") !== "valid2"  && row == "odd-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNumTwo - 9}']`).css("background-color","grey")
+    $(`[position='${positionNumTwo - 7}']`).attr("class") == "valid3" || $(`[position='${positionNumTwo - 7}']`).attr("class") == "valid2"? $(`[value='${positionNumTwo - 7}']`).css("background-color","black") : $(`[value='${positionNumTwo - 7}']`).css("background-color","grey")
+    return;
+  }if($(`[value='${positionNumTwo - 7}']`).attr("class") == "valid"  && $(`[position='${positionNumTwo - 3}']`).attr("class") == "valid2"  && $(`[position='${positionNumTwo - 7}']`).attr("class") !== "valid2" && row == "odd-from-top"){
+    alert('extra skip?')
+    $(`[value='${positionNumTwo - 7}']`).css("background-color","grey") 
+    $(`[position='${positionNumTwo - 9}']`).attr("class") == "valid3" || $(`[position='${positionNumTwo - 9}']`).attr("class") == "valid2" ? $(`[value='${positionNumTwo - 9}']`).css("background-color","black") : $(`[value='${positionNumTwo - 9}']`).css("background-color","grey")
+    return;
+  }else{
+
+    $(".valid").css("background-color","black");
+    $(".selectedTwo").removeClass("selectedTwo");
+    makeKingP2(1,2,3,4);
+    positionNumTwo = 0;
+    PlayerTurn ="P1";
+  }
+}, 1000);
+}
+
+$( playerOne).click(function() {
+  PlayerTurn = "P1";
+  positionNum = parseInt($(this).attr("position"))
+  row = $(this).attr("data");
+
+  // alert(positionNum);
+  $(this).toggleClass( "selected");
+});
+
+
+$( playerTwo).click(function() {
+  PlayerTurn = "P2";
+  positionNumTwo = parseInt($(this).attr( "position"))
+  row = $(this).attr("data");
+  // alert(positionNumTwo);
+  $(this).toggleClass( "selectedTwo");
+});
+
+$(emptySpot).click(function() {
+  destinationNum = parseInt($(this).attr("value"))
+//  alert(destinationNum);
+
+//Moving P1
+if(PlayerTurn == "P1" && destinationNum === positionNum + 5 && row == "odd-from-top"){
+  $(".selected").animate({ left: "+=64" , top:"+=64" });
+  $(".selected").attr({position: `${destinationNum}`, data: "even-from-top"})
+  $(".selected").removeClass("selected");
+  makeKing(29,30,31,32);
+  row = "even-from-top";
+  positionNum = 0;
+  PlayerTurn ="P2";
+}else if(PlayerTurn == "P1" && destinationNum === positionNum + 4 && row == "odd-from-top"){
+  $(".selected").animate({ left: "-=64" , top:"+=64" }); 
+  $(".selected").attr({position: `${destinationNum}`, data: "even-from-top"})
+  $(".selected").removeClass("selected");
+  makeKing(29,30,31,32);
+  row = "even-from-top";
+  positionNum = 0;
+  PlayerTurn ="P2";
+}else if(PlayerTurn == "P1" && destinationNum === positionNum + 4 && row === "even-from-top"){
+  $(".selected").animate({ left: "+=64" , top:"+=64" }); 
+  $(".selected").attr({position: `${destinationNum}`, data: "odd-from-top"})
+  $(".selected").removeClass("selected");
+  makeKing(29,30,31,32);
+  row = "odd-from-top";
+  positionNum = 0;
+  PlayerTurn ="P2";
+}else if(PlayerTurn == "P1" && destinationNum === positionNum + 3 && row === "even-from-top"){
+  $(".selected").animate({ left: "-=64" , top:"+=64" }); 
+  $(".selected").attr({position: `${destinationNum}`, data: "odd-from-top"})
+  $(".selected").removeClass("selected");
+  makeKing(29,30,31,32);
+  row = "odd-from-top";
+  positionNum = 0;
+  PlayerTurn ="P2";
+}
+//king move p1
+
+
+else if(isKing = "P1" && PlayerTurn == "P1" && destinationNum === positionNum - 4 && row == "even-from-top"){
+  $(".selected").animate({ left: "+=64" , top:"-=64" });
+  $(".selected").attr({position: `${destinationNum}`, data: "odd-from-top"})
+  $(".selected").removeClass("selected");
+  makeKing(29,30,31,32);
+  row = "even-from-top";
+  positionNum = 0;
+  PlayerTurn ="P2";
+}else if(isKing = "P1" &&  PlayerTurn == "P1" && destinationNum === positionNum - 5 && row == "even-from-top"){
+  $(".selected").animate({ left: "-=64" , top:"-=64" }); 
+  $(".selected").attr({position: `${destinationNum}`, data: "odd-from-top"})
+  $(".selected").removeClass("selected");
+  makeKing(29,30,31,32);
+  row = "even-from-top";
+  positionNum = 0;
+  PlayerTurn ="P2";
+}else if(isKing = "P1" &&  PlayerTurn == "P1" && destinationNum === positionNum - 3 && row === "odd-from-top"){
+  $(".selected").animate({ left: "+=64" , top:"-=64" }); 
+  $(".selected").attr({position: `${destinationNum}`, data: "even-from-top"})
+  $(".selected").removeClass("selected");
+  makeKing(29,30,31,32);
+  row = "odd-from-top";
+  positionNum = 0;
+  PlayerTurn ="P2";
+}else if(isKing = "P1" &&  PlayerTurn == "P1" && destinationNum === positionNum - 4 && row === "odd-from-top"){
+  $(".selected").animate({ left: "-=64" , top:"-=64" }); 
+  $(".selected").attr({position: `${destinationNum}`, data: "even-from-top"})
+  $(".selected").removeClass("selected");
+  makeKing(29,30,31,32);
+  row = "odd-from-top";
+  positionNum = 0;
+  PlayerTurn ="P2";
+}
+
+
+
+//Moving P2
+else if(PlayerTurn == "P2" && destinationNum === positionNumTwo - 4 && row === "even-from-top"){
+  $(".selectedTwo").animate({ left: "+=64" , top:"-=64" });
+  $(".selectedTwo").attr({position: `${destinationNum}`, data: "odd-from-top"})
+  $(".selectedTwo").removeClass("selectedTwo");
+  makeKingP2(1,2,3,4);
+  row = "odd-from-top";
+  positionNumTwo = 0;
+  PlayerTurn ="P1";
+}else if(PlayerTurn == "P2" && destinationNum === positionNumTwo - 5 && row === "even-from-top"){
+  $(".selectedTwo").animate({ left: "-=64" , top:"-=64" }); 
+  $(".selectedTwo").attr({position: `${destinationNum}`, data: "odd-from-top"})
+  $(".selectedTwo").removeClass("selectedTwo");
+  makeKingP2(1,2,3,4);
+  row = "odd-from-top";
+  positionNumTwo = 0;
+  PlayerTurn ="P1";
+}else if(PlayerTurn == "P2" && destinationNum === positionNumTwo - 3 && row === "odd-from-top"){
+  $(".selectedTwo").animate({ left: "+=64" , top:"-=64" }); 
+  $(".selectedTwo").attr({position: `${destinationNum}`, data: "even-from-top"})
+  $(".selectedTwo").removeClass("selectedTwo");
+  makeKingP2(1,2,3,4);
+  row = "even-from-top";
+  positionNumTwo = 0;
+  PlayerTurn ="P1";
+}else if(PlayerTurn == "P2" && destinationNum === positionNumTwo - 4 && row === "odd-from-top"){
+  $(".selectedTwo").animate({ left: "-=64" , top:"-=64" }); 
+  $(".selectedTwo").attr({position: `${destinationNum}`, data: "even-from-top"})
+  $(".selectedTwo").removeClass("selectedTwo");
+  makeKingP2(1,2,3,4);
+  row= "even-from-top";
+  positionNumTwo = 0;
+  PlayerTurn ="P1";
+}
+
+//king move p2
+
+
+
+
+
+//Skipping P1
+else if(PlayerTurn === "P1" && destinationNum === positionNum + 9 && $(`[position='${positionNum + 5}']`).attr("class") == "valid3" && row == "odd-from-top"){
+
+  $(".selected").animate({ left: "+=128" , top:"+=128" }); 
+  $(".selected").attr("position", `${destinationNum}`);
+  $(`[position='${positionNum + 5}']`).css("visibility", "hidden");
+  
+  // $(".selected").removeClass("selected");
+  
+  doubleSkip()
+  // PlayerTurn ="P2"
+}
+else if(PlayerTurn === "P1" && destinationNum === positionNum + 7 && $(`[position='${positionNum + 4}']`).attr("class") == "valid3" && row == "odd-from-top"){
+
+$(".selected").animate({ left: "-=128" , top:"+=128" }); 
+$(".selected").attr("position", `${destinationNum}`);
+$(`[position='${positionNum + 4}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+
+doubleSkip()
+// PlayerTurn ="P2"
+}
+
+else if(PlayerTurn === "P1" && destinationNum === positionNum + 9 && $(`[position='${positionNum + 4}']`).attr("class") == "valid3" && row == "even-from-top"){
+
+$(".selected").animate({ left: "+=128" , top:"+=128" }); 
+$(".selected").attr("position", `${destinationNum}`);
+$(`[position='${positionNum + 4}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+
+doubleSkip()
+// PlayerTurn ="P2"
+}
+else if(PlayerTurn === "P1" && destinationNum === positionNum + 7 && $(`[position='${positionNum + 3}']`).attr("class") == "valid3" && row == "even-from-top"){
+
+$(".selected").animate({ left: "-=128" , top:"+=128" }); 
+$(".selected").attr("position", `${destinationNum}`);
+$(`[position='${positionNum + 3}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+
+doubleSkip()
+// PlayerTurn ="P2"
+}
+
+
+
+
+
+
+//king skip p1
+else if(isKing = 'P1' && PlayerTurn === "P1" && destinationNum === positionNum + 9 && $(`[position='${positionNum + 5}']`).attr("class") == "valid3" && row == "odd-from-top"){
+
+$(".selected").animate({ left: "+=128" , top:"+=128" }); 
+$(".selected").attr("position", `${destinationNum}`);
+$(`[position='${positionNum + 5}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+
+doubleSkipKing()
+// PlayerTurn ="P2"
+}
+else if(isKing = 'P1' && PlayerTurn === "P1" && destinationNum === positionNum + 7 && $(`[position='${positionNum + 4}']`).attr("class") == "valid3" && row == "odd-from-top"){
+
+$(".selected").animate({ left: "-=128" , top:"+=128" }); 
+$(".selected").attr("position", `${destinationNum}`);
+$(`[position='${positionNum + 4}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+
+doubleSkipKing()
+// PlayerTurn ="P2"
+}
+
+else if(isKing = 'P1' && PlayerTurn === "P1" && destinationNum === positionNum + 9 && $(`[position='${positionNum + 4}']`).attr("class") == "valid3" && row == "even-from-top"){
+
+$(".selected").animate({ left: "+=128" , top:"+=128" }); 
+$(".selected").attr("position", `${destinationNum}`);
+$(`[position='${positionNum + 4}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+
+doubleSkipKing()
+// PlayerTurn ="P2"
+}
+else if(isKing = 'P1' && PlayerTurn === "P1" && destinationNum === positionNum + 7 && $(`[position='${positionNum + 3}']`).attr("class") == "valid3" && row == "even-from-top"){
+
+$(".selected").animate({ left: "-=128" , top:"+=128" }); 
+$(".selected").attr("position", `${destinationNum}`);
+$(`[position='${positionNum + 3}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+
+doubleSkipKing()
+// PlayerTurn ="P2"
+
+
+}
+
+
+
+
+
+
+
+
+//Skippin P2
+
+else if(destinationNum === positionNumTwo -9 && $(`[position='${positionNumTwo - 5}']`).attr("class") == "valid2" && row == "even-from-top"){
+
+$(".selectedTwo").animate({ left: "-=128" , top:"-=128" }); 
+$(".selectedTwo").attr("position", `${destinationNum}`);
+$(`[position='${positionNumTwo - 5}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+// makeKing(1,2,3,4);
+doubleSkipP2()
+}
+
+else if(destinationNum === positionNumTwo -7 && $(`[position='${positionNumTwo - 4}']`).attr("class") == "valid2" && row == "even-from-top"){
+
+$(".selectedTwo").animate({ left: "+=128" , top:"-=128" }); 
+$(".selectedTwo").attr("position", `${destinationNum}`);
+$(`[position='${positionNumTwo - 4}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+// makeKing(1,2,3,4);
+doubleSkipP2()
+}
+
+else if(destinationNum === positionNumTwo - 9 && $(`[position='${positionNumTwo - 4}']`).attr("class") == "valid2" && row == "odd-from-top"){
+
+$(".selectedTwo").animate({ left: "-=128" , top:"-=128" }); 
+$(".selectedTwo").attr("position", `${destinationNum}`);
+$(`[position='${positionNumTwo - 4}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+// makeKing(1,2,3,4);
+doubleSkipP2()
+}
+
+else if(destinationNum === positionNumTwo - 7 && $(`[position='${positionNumTwo - 3}']`).attr("class") == "valid2" && row == "odd-from-top"){
+
+$(".selectedTwo").animate({ left: "+=128" , top:"-=128" }); 
+$(".selectedTwo").attr("position", `${destinationNum}`);
+$(`[position='${positionNumTwo - 3}']`).css("visibility", "hidden");
+
+// $(".selected").removeClass("selected");
+// makeKing(1,2,3,4);
+doubleSkipP2()
+}
+  
+  else{
+  alert('invalid move')
+  $(".selected").removeClass("selected");
+}
+
+
+ 
+});
+
+
+// whats left
+// add make King for P2
+//add king moving for both players
+// add king skipping for both players
+
+//Notes
+
+// make king for P1 is in the double skip function, but hasnt been
+// added yet for P2
+</script>
+
+</body>
+
+</html>

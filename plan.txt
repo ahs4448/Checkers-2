@@ -1,0 +1,6 @@
+the positions are the pieces
+the values are the empty spaces
+
+
+
+
