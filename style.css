@@ -36,7 +36,7 @@ h1{
     min-width: 5%;
     margin: 1px;
     display: inline-block;
-    background-color: rgb(161, 72, 37);
+    background-color: rgb(177, 65, 0);
     background-size: cover;
     border: 1px solid rgb(202, 98, 0);
     border-radius: 4px;
@@ -111,12 +111,10 @@ h1{
     min-width: 5%;
     margin: 1px;
     background-image: url('playerTwo.png');
+    background-position: 50% 40%;
     background-size: 100px 100px;
-    background-repeat: no-repeat;
-    background-position: 50% 41%;   
-    position: relative;
-    
     background-color: rgb(80, 80, 80);
+    position: relative;
     border: 1px solid rgb(109, 84, 62);
     border-radius: 40px;
     float: left;
@@ -147,11 +145,9 @@ h1{
     width: 5%;
     min-width: 5%;
     margin: 1px;
-    background-image: url('KingTwo.png');
-    background-size: 100px 100px;
-    background-repeat: no-repeat;
-    background-position: 49% 53%;
+    
     position: relative;
+    background-size: cover;
     background-color: rgb(87, 97, 0) !important;
     border: 1px solid rgb(109, 84, 62);
     border-radius: 40px;
@@ -167,11 +163,30 @@ h1{
     z-index: 5;
     position: relative;
     background-size: cover;
-    /* background-image: url('playerOne.png'); */
+    background-image: url('playerOne.png');
     background-size: 100px 100px;
     background-repeat: no-repeat;
     background-position: 47% 39%;
-    /* background-color: rgb(255, 102, 0); */
+    background-color: rgb(255, 102, 0);
+    border: 3px solid rgb(251, 255, 0) !important;
+    border-radius: 40px;
+    float: left;
+   cursor: pointer;
+}
+
+.valid2.kingOne.selected{
+    padding: 28px;
+    width: 5%;
+    min-width: 5%;
+    margin: 1px;
+    z-index: 5;
+    position: relative;
+    background-image: url('kingOne.png');
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-position: 50% 48%;
+    background-color: rgb(255, 102, 0);
     border: 3px solid rgb(251, 255, 0) !important;
     border-radius: 40px;
     float: left;
@@ -185,38 +200,16 @@ h1{
     margin: 1px;
     z-index: 5;
     position: relative;
-    background-size: cover;
-    /* background-image: url('playerOne.png'); */
+    background-position: 50% 40%;
     background-size: 100px 100px;
-    background-repeat: no-repeat;
-    background-position: 47% 39%;
-    /* background-color: rgb(255, 102, 0); */
+    background-color: rgb(80, 80, 80);
+    position: relative;
     border: 3px solid rgb(251, 255, 0) !important;
     border-radius: 40px;
     float: left;
    cursor: pointer;
 }
 
-
-
-
-
-
-
-
-/* .exception{
-    padding: 25px;
-    width: 5%;
-    min-width: 5%;
-    margin-right: 60px;
-    z-index: 3;
-    background-image: linear-gradient(rgb(211, 0, 0), rgb(255, 14, 14));
-    position: relative;
-    transform: translate(-32px,-225px);
-    border-radius: 40px;
-    float: left;
-  
-} */
 
 
 
