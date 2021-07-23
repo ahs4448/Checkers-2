@@ -19,11 +19,16 @@
 <!-- As a link -->
 <nav class="navbar navbar-light bg-light" id="navigation">
 
-  <h3><span class="playerOne">Player 1</span> </h3>
-  <h3><span class="playerTwo">Player 2</span> </h3>
+  <h4><span class="playerOne" style="color:orange;">Player 1</span> <br> 
+   <!-- <p class="playerOne" style="color:orange;"> pieces remaining: <span id="one">12</span> /</p>   -->
+  </h4>
+  <h3>Checkers</h3>
+  <h4><span class="playerTwo">Player 2</span> 
+    <!-- <p class="playerTwo"> pieces remaining: <span id="two"></span> </p>   -->
+  </h4>
 
-  <a class="navbar-brand" href="#">Checkers</a>
-  <button id="undo"> Unselect</button>
+  <!-- <a class="navbar-brand" href="#">Checkers</a> -->
+  <!-- <button id="undo"> test</button> -->
 </nav>
 
 
@@ -425,9 +430,6 @@
   </div>
 
 </div>
-
-
-
 
 
 <script>
@@ -1101,18 +1103,12 @@ $(".valid").click(function () {
             //debugger;
           }
     }
-
 });
-
-
 
   // we need to put special conditions for corner spots,no more additional skips in that direction FINISHED
 // find out why i can skip my own players FINISHED
 
-
-
-
-//last taskS
+//last tasks
 
 // make the skip kings function work for player one and 2
 
@@ -1123,5 +1119,4 @@ $(".valid").click(function () {
 </script>
 
 </body>
-
 </html>
