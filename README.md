@@ -1,6 +1,8 @@
 # Checkers-2
 checkers game
 
+play the game here: https://ahs4448.github.io/Checkers-2/
+
 This is a game im working on in javascript and theres no cpu functionality yet.It is almost complete but I need to do the following:
 
 implement logjam algorithm
