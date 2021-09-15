@@ -10,13 +10,8 @@ implement logjam algorithm
 
 prevent inelegible pieces from being able to be selected
 
-prevent inelegible spots on the board from being picked for a move or skip
-
-implement unselecting feature
-
 implement additional skip highlighter on spots eligible for additional skips
 
-add score keeping and win or lose logic.
 
 React version coming soon
 
