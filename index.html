@@ -434,17 +434,6 @@
 
 <script>
 
-
-function lightScoreboard() {
-    if (playerOneTurn === true) {
-        $(".playerOne").css("color", "orange")
-        $(".playerTwo").css("color", "black")
-    } else if (playerTwoTurn === true) {
-        $(".playerOne").css("color", "black")
-        $(".playerTwo").css("color", "orange")
-    }
-}
-
 var playerOneTurn = true;
 var playerTwoTurn = false;
 var playerOnePieces = 12;
@@ -467,13 +456,29 @@ let arrayy = [
 ]
 
 function lightScoreboard() {
+    if(playerTwoPieces === 0){
+        alert('player 1 wins')
+    }
+    if(playerOnePieces === 0){
+        alert('player 2 wins')
+    }
+
+
     if (playerOneTurn === true) {
         $(".playerOne").css("color", "orange")
         $(".playerTwo").css("color", "black")
+
+        $(".valid3").css("pointer-events", "none")
+        $(".valid2").css("pointer-events", "auto")
     } else if (playerTwoTurn === true) {
         $(".playerOne").css("color", "black")
         $(".playerTwo").css("color", "orange")
+
+        $(".valid2").css("pointer-events", "none")
+        $(".valid3").css("pointer-events", "auto")
     }
+    $("#two").html(playerTwoPieces);
+    $("#one").html(playerOnePieces);
 }
 
 function makeKing() {
@@ -519,8 +524,6 @@ function reset() {
     num = 0;
     isKing = "";
 }
-
-// $("#two").html(playerTwoPieces)
 
 function Move(value, directionH, directionV, currentPlayer, cpClass) {
 
@@ -568,7 +571,7 @@ function Move(value, directionH, directionV, currentPlayer, cpClass) {
 }
 
 function skip(value, oppValue, valueTwo, oppValueTwo, directionH, directionV, currentPlayer, cpClass, opponent) {
-    if (arrayy[positionNum + oppValue] == opponent) {
+    if (arrayy[positionNum + oppValue] == opponent ) {
         $(currentPlayer).animate({ left: directionH, top: directionV });
         $(currentPlayer).attr("position", `${num}`)
 
@@ -579,13 +582,30 @@ function skip(value, oppValue, valueTwo, oppValueTwo, directionH, directionV, cu
     positionNum = parseInt(arr[0].getAttribute("position"))
 
     if (arrayy[num + oppValue] == opponent && arrayy[num + value] == "S") {
-        alert('extra skip? condition 1');
-        return;
+        if (num !== 4 && num !== 12 && num !== 20 && num !== 28
+            && num !== 8 && num !== 16 && num !== 24 && num !== 32
+            && num !== 1 && num !== 9 && num !== 17 && num !== 25
+            && num !== 5 && num !== 13 && num !== 21 && num !== 29) {
+                alert('extra skip? condition 1');                  
+        }else {
+            $(currentPlayer).removeClass(cpClass);
+            makeKing()
+            reset()
+            if (playerOneTurn === true && playerTwoTurn === false) {
+                playerTwoTurn = true
+                playerOneTurn = false
+            } else if (playerTwoTurn === true && playerOneTurn === false) {
+                playerOneTurn = true
+                playerTwoTurn = false
+            }
+        }
     }
     else if (arrayy[num + oppValueTwo] == opponent && arrayy[num + valueTwo] == "S") {
-        alert('extra skip? condition 2');
-        return;
+       
+                alert('extra skip? condition 2');        
+     
     }
+    
     else {
 
         $(currentPlayer).removeClass(cpClass);
@@ -651,7 +671,6 @@ function skipKings(value, oppValue, valueTwo, oppValueTwo, valueThree, oppValueT
         }
     }
     else {
-
         $(currentPlayer).removeClass(cpClass);
         makeKing()
         reset()
@@ -664,10 +683,13 @@ function skipKings(value, oppValue, valueTwo, oppValueTwo, valueThree, oppValueT
         }
     }
 }
-
 $(".valid2").click(function () {
 
+    $(".valid3").css("pointer-events", "none")
+    $(".selected").removeClass("selected")
     $(this).toggleClass("selected")
+    
+    arr = []
     arr.push(this);
 
     positionRow = arr[0].getAttribute("data");  //even or odd row
@@ -680,26 +702,29 @@ $(".valid2").click(function () {
 });
 
 //player 2
-
 $(".valid3").click(function () {
 
+    $(".valid2").css("pointer-events", "none")
+
+    $(".selected").removeClass("selected")
     $(this).toggleClass("selectedTwo")
+
+    arr = []
     arr.push(this);
 
     positionRow = arr[0].getAttribute("data");
     positionNum = parseInt(arr[0].getAttribute("position"))
 
     if (arr[0].getAttribute("class") === "valid3 kingTwo selectedTwo") {
-
         isKing = "p2"
     }
 });
-
 
 $(".valid").click(function () {
     num = parseInt(this.getAttribute("value")) //the spot on the board where the piece will be moved to
 
     if (playerOneTurn == true && isKing !== "p1") {
+       
         if (num === positionNum + 5 && positionRow == "odd-from-top") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
@@ -707,6 +732,7 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
+            return;
         }
         if (num === positionNum + 4 && positionRow == "odd-from-top") {
             arrayy[num] = "P1"
@@ -715,14 +741,16 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
+            return;
         }
         if (num === positionNum + 4 && positionRow == "even-from-top") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             Move(4, "+=64", "+=64", ".selected", "selected")
             playerTwoTurn = true;
-            playerOneTurn = false;
+            playerOneTurn = false;           
             lightScoreboard()
+            return;
         }
         if (num === positionNum + 3 && positionRow == "even-from-top") {
             arrayy[num] = "P1"
@@ -731,39 +759,46 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
+            return;
         }
-
-        if (num === positionNum + 9 && positionRow == "odd-from-top") {
+        if (num === positionNum + 9 && positionRow == "odd-from-top" && arrayy[positionNum + 5] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skip(9, 5, 7, 4, "+=128", "+=128", ".selected", "selected", "P2")
             playerTwoPieces--;
             lightScoreboard()
+            return;
         }
-        if (num === positionNum + 7 && positionRow == "odd-from-top") {
+        if (num === positionNum + 7 && positionRow == "odd-from-top" && arrayy[positionNum + 4] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skip(7, 4, 9, 5, "-=128", "+=128", ".selected", "selected", "P2")
+            playerTwoPieces--;
             lightScoreboard()
+            return;
         }
-        if (num === positionNum + 9 && positionRow == "even-from-top") {
+        if (num === positionNum + 9 && positionRow == "even-from-top" && arrayy[positionNum + 4] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skip(9, 4, 7, 3, "+=128", "+=128", ".selected", "selected", "P2")
             playerTwoPieces--;
             lightScoreboard()
+            return;
         }
-        if (num === positionNum + 7 && positionRow == "even-from-top") {
+        if (num === positionNum + 7 && positionRow == "even-from-top" && arrayy[positionNum + 3] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skip(7, 3, 9, 4, "-=128", "+=128", ".selected", "selected", "P2")
             playerTwoPieces--;
             lightScoreboard()
-
+            return;
+        }else{
+            alert("bad move")
         }
     }
     //king p1
     if (playerOneTurn == true && isKing === "p1") {
+
         if (num === positionNum + 5 && positionRow == "odd-from-top") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
@@ -771,7 +806,7 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
-            //return;
+            return;
         }
         if (num === positionNum + 4 && positionRow == "odd-from-top") {
             arrayy[num] = "P1"
@@ -780,7 +815,7 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
-            //return;
+            return;
         }
         if (num === positionNum + 4 && positionRow == "even-from-top") {
             arrayy[num] = "P1"
@@ -789,7 +824,7 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
-            //return;
+            return;
         }
         if (num === positionNum + 3 && positionRow == "even-from-top") {
             arrayy[num] = "P1"
@@ -798,9 +833,8 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
-            //return;
+            return;
         }
-
         if (num === positionNum + -3 && positionRow == "odd-from-top") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
@@ -808,7 +842,7 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
-            //return;
+            return;
         }
         if (num === positionNum + -4 && positionRow == "odd-from-top") {
             arrayy[num] = "P1"
@@ -817,7 +851,7 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
-            //return;
+            return;
         }
         if (num === positionNum + -4 && positionRow == "even-from-top") {
             arrayy[num] = "P1"
@@ -826,7 +860,7 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
-            //return;
+            return;
         }
         if (num === positionNum + -5 && positionRow == "even-from-top") {
             arrayy[num] = "P1"
@@ -835,69 +869,77 @@ $(".valid").click(function () {
             playerTwoTurn = true;
             playerOneTurn = false;
             lightScoreboard()
-            //return;
+            return;
         }
         // skipping
-        if (num === positionNum + 9 && positionRow == "odd-from-top") {
+        if (num === positionNum + 9 && positionRow == "odd-from-top" && arrayy[positionNum + 5] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skipKings(9, 5, 7, 4, -7, -3, "+=128", "+=128", ".selected", "selected", "P2")
             playerTwoPieces--;
             lightScoreboard()
+            return;
         }
-        if (num === positionNum + 7 && positionRow == "odd-from-top") {
+        if (num === positionNum + 7 && positionRow == "odd-from-top" && arrayy[positionNum + 4] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skipKings(7, 4, 9, 5, -9, -4, "-=128", "+=128", ".selected", "selected", "P2")
             playerTwoPieces--;
             lightScoreboard()
+            return;
         }
-        if (num === positionNum + 9 && positionRow == "even-from-top") {
+        if (num === positionNum + 9 && positionRow == "even-from-top" && arrayy[positionNum + 4] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skipKings(9, 4, 7, 3, -7, -4, "+=128", "+=128", ".selected", "selected", "P2")
             playerTwoPieces--;
             lightScoreboard()
+            return;
         }
-        if (num === positionNum + 7 && positionRow == "even-from-top") {
+        if (num === positionNum + 7 && positionRow == "even-from-top" && arrayy[positionNum + 3] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skipKings(7, 3, 9, 4, -9, -5, "-=128", "+=128", ".selected", "selected", "P2")
+            playerTwoPieces--;
             lightScoreboard()
+            return;
         }
-
-        if (num === positionNum - 7 && positionRow == "odd-from-top") {
+        if (num === positionNum - 7 && positionRow == "odd-from-top" && arrayy[positionNum - 3] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skipKings(-7, -3, -9, -4, 9, 5, "+=128", "-=128", ".selected", "selected", "P2")
             playerTwoPieces--;
             lightScoreboard()
+            return;
         }
-        if (num === positionNum - 9 && positionRow == "odd-from-top") {
+        if (num === positionNum - 9 && positionRow == "odd-from-top" && arrayy[positionNum - 4] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skipKings(-9, -4, -7, -3, 7, 4, "-=128", "-=128", ".selected", "selected", "P2")
             playerTwoPieces--;
             lightScoreboard()
+            return;
         }
-
-        if (num === positionNum - 7 && positionRow == "even-from-top") {
+        if (num === positionNum - 7 && positionRow == "even-from-top" && arrayy[positionNum - 4] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skipKings(-7, -4, -9, -5, 9, 4, "+=128", "-=128", ".selected", "selected", "P2")
             playerTwoPieces--;
             lightScoreboard()
+            return;
         }
-        if (num === positionNum - 9 && positionRow == "even-from-top") {
+        if (num === positionNum - 9 && positionRow == "even-from-top" && arrayy[positionNum - 5] == "P2") {
             arrayy[num] = "P1"
             arrayy[positionNum] = "S"
             skipKings(-9, -5, -7, -4, 7, 3, "-=128", "-=128", ".selected", "selected", "P2")
             playerTwoPieces--;
             lightScoreboard()
+            return;
+        }else{
+            alert("bad move")
         }
     }
     /////////PLAYER 2 //////
-
     if (playerTwoTurn == true && isKing !== "p2") {
         
         if (num === positionNum + -3 && positionRow == "odd-from-top") {
@@ -907,6 +949,7 @@ $(".valid").click(function () {
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
+            return;
         }
         if (num === positionNum + -4 && positionRow == "odd-from-top") {
             arrayy[num] = "P2"
@@ -915,6 +958,7 @@ $(".valid").click(function () {
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
+            return;
         }
         if (num === positionNum + -4 && positionRow == "even-from-top") {
             arrayy[num] = "P2"
@@ -923,6 +967,7 @@ $(".valid").click(function () {
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
+            return;
         }
         if (num === positionNum + -5 && positionRow == "even-from-top") {
             arrayy[num] = "P2"
@@ -931,32 +976,42 @@ $(".valid").click(function () {
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
+            return;
         }
         //skip
-        if (num === positionNum + -7 && positionRow == "odd-from-top") {
+        if (num === positionNum + -7 && positionRow == "odd-from-top" && arrayy[positionNum - 3] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skip(-7, -3, -9, -4, "+=128", "-=128", ".selectedTwo", "selectedTwo", "P1")
+            playerOnePieces--;
             lightScoreboard()
+            return;
         }
-        if (num === positionNum + -9 && positionRow == "odd-from-top") {
+        if (num === positionNum + -9 && positionRow == "odd-from-top" && arrayy[positionNum - 4] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skip(-9, -4, -7, -3, "-=128", "-=128", ".selectedTwo", "selectedTwo", "P1")
+            playerOnePieces--;
             lightScoreboard()
+            return;
         }
-
-        if (num === positionNum + -7 && positionRow == "even-from-top") {
+        if (num === positionNum + -7 && positionRow == "even-from-top" && arrayy[positionNum - 4] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skip(-7, -4, -9, -5, "+=128", "-=128", ".selectedTwo", "selectedTwo", "P1")
+            playerOnePieces--;
             lightScoreboard()
+            return;
         }
-        if (num === positionNum + -9 && positionRow == "even-from-top") {
+        if (num === positionNum + -9 && positionRow == "even-from-top" && arrayy[positionNum - 5] == "P1") {
             arrayy[num] = "P2";
             arrayy[positionNum] = "S";
             skip(-9, -5, -7, -4, "-=128", "-=128", ".selectedTwo", "selectedTwo", "P1");
+            playerOnePieces--;
             lightScoreboard()
+            return;
+        }else{
+            alert("bad move")
         }
     }
 
@@ -968,154 +1023,142 @@ $(".valid").click(function () {
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
-            // return;
+            return;
         }
-
-        else if (num === positionNum + 4 && positionRow == "odd-from-top") {
+        if (num === positionNum + 4 && positionRow == "odd-from-top") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             Move(4, "-=64", "+=64", ".selectedTwo", "selectedTwo")
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
-            //return;
+            return;
         }
-        else if (num === positionNum + 4 && positionRow == "even-from-top") {
+        if (num === positionNum + 4 && positionRow == "even-from-top") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             Move(4, "+=64", "+=64", ".selectedTwo", "selectedTwo")
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
-            //return;
+            return;
         }
-        else if (num === positionNum + 3 && positionRow == "even-from-top") {
+        if (num === positionNum + 3 && positionRow == "even-from-top") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             Move(3, "-=64", "+=64", ".selectedTwo", "selectedTwo")
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
-            //return;
+            return;
         }
 
-        else if (num === positionNum + -3 && positionRow == "odd-from-top") {
+        if (num === positionNum + -3 && positionRow == "odd-from-top") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             Move(-3, "+=64", "-=64", ".selectedTwo", "selectedTwo")
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
-            //return;
+            return;
         }
-        else if (num === positionNum + -4 && positionRow == "odd-from-top") {
+        if (num === positionNum + -4 && positionRow == "odd-from-top") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             Move(-4, "-=64", "-=64", ".selectedTwo", "selectedTwo")
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
-            //return;
+            return;
         }
-        else if (num === positionNum + -4 && positionRow == "even-from-top") {
+        if (num === positionNum + -4 && positionRow == "even-from-top") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             Move(-4, "+=64", "-=64", ".selectedTwo", "selectedTwo")
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
-            //return;
+            return;
         }
-        else if (num === positionNum + -5 && positionRow == "even-from-top") {
+        if (num === positionNum + -5 && positionRow == "even-from-top") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             Move(-5, "-=64", "-=64", ".selectedTwo", "selectedTwo")
             playerTwoTurn = false;
             playerOneTurn = true;
             lightScoreboard()
-            //return;
+            return;
         }
           // skipping
-          else if (num === positionNum + 9 && positionRow == "odd-from-top") {
+          if (num === positionNum + 9 && positionRow == "odd-from-top" && arrayy[positionNum + 5] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skipKings(9, 5, 7, 4, -7, -3, "+=128", "+=128", ".selectedTwo", "selectedTwo","P1")
-            // playerTwoTurn = false;
-            // playerOneTurn = true;
+            playerOnePieces--;
             lightScoreboard()
-            //debugger;
-            //return;
+            return;
           }
-          else if (num === positionNum + 7 && positionRow == "odd-from-top") {
+          if (num === positionNum + 7 && positionRow == "odd-from-top" && arrayy[positionNum + 4] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skipKings(7, 4, 9, 5, -9, -4, "-=128", "+=128", ".selectedTwo", "selectedTwo","P1")
+            playerOnePieces--;
             lightScoreboard()
-            //debugger;
-            //return;
+            return;
           }
-          else if (num === positionNum + 9 && positionRow == "even-from-top") {
+          if (num === positionNum + 9 && positionRow == "even-from-top" && arrayy[positionNum + 4] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skipKings(9, 4, 7, 3, -7, -4, "+=128", "+=128", ".selectedTwo", "selectedTwo","P1")
+            playerOnePieces--;
             lightScoreboard()
-            //debugger;
-            //return;
+            return;
           }
-          else if (num === positionNum + 7 && positionRow == "even-from-top") {
+          if (num === positionNum + 7 && positionRow == "even-from-top" && arrayy[positionNum + 3] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skipKings(7, 3, 9, 4, -9, -5, "-=128", "+=128", ".selectedTwo", "selectedTwo","P1")
+            playerOnePieces--;
             lightScoreboard()
-            //debugger;
-            //return;
+            return;
           }
-
-
-          else if (num === positionNum - 7 && positionRow == "odd-from-top") {
+          if (num === positionNum - 7 && positionRow == "odd-from-top" && arrayy[positionNum - 3] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skipKings(-7, -3, -9, -4, 9, 5, "+=128", "-=128", ".selectedTwo", "selectedTwo","P1")
+            playerOnePieces--;
             lightScoreboard()
-            //debugger;
+            return;
           }
-          else if (num === positionNum - 9 && positionRow == "odd-from-top") {
+          if (num === positionNum - 9 && positionRow == "odd-from-top" && arrayy[positionNum - 4] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skipKings(-9, -4, -7, -3, 7, 4, "-=128", "-=128", ".selectedTwo", "selectedTwo","P1")
+            playerOnePieces--;
             lightScoreboard()
-            //debugger;
-
+            return;
           }
 
-          else if (num === positionNum - 7 && positionRow == "even-from-top") {
+          if (num === positionNum - 7 && positionRow == "even-from-top" && arrayy[positionNum - 4] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skipKings(-7, -4, -9, -5, 9, 4, "+=128", "-=128", ".selectedTwo", "selectedTwo","P1")
+            playerOnePieces--;
             lightScoreboard()
-            //debugger;
+            return;
           }
-          else if (num === positionNum - 9 && positionRow == "even-from-top") {
+          if (num === positionNum - 9 && positionRow == "even-from-top" && arrayy[positionNum - 5] == "P1") {
             arrayy[num] = "P2"
             arrayy[positionNum] = "S"
             skipKings(-9, -5, -7, -4, 7, 3, "-=128", "-=128", ".selectedTwo", "selectedTwo","P1")
+            playerOnePieces--;
             lightScoreboard()
-            //debugger;
+            return;
+          }else{
+              alert("bad move");              
           }
     }
 });
-
-  // we need to put special conditions for corner spots,no more additional skips in that direction FINISHED
-// find out why i can skip my own players FINISHED
-
-//last tasks
-
-// make the skip kings function work for player one and 2
-
-// find out why the player two king cant move in either direction
-
-//make the skip function consult the array and not just the king skip function
-
 </script>
 
 </body>
