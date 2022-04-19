@@ -165,11 +165,11 @@ h1{
     margin: 1px;
     z-index: 5;
     position: relative;
-    background-size: cover;
-    background-image: url('playerOne.png');
+    /* background-size: cover; */
+    /* background-image: url('playerOne.png');
     background-size: 100px 100px;
     background-repeat: no-repeat;
-    background-position: 47% 39%;
+    background-position: 47% 39%; */
     background-color: rgb(255, 102, 0);
     border: 3px solid rgb(251, 255, 0) !important;
     border-radius: 40px;
@@ -190,23 +190,6 @@ h1{
     background-position: 50% 50%;
     background-position: 50% 48%;
     background-color: rgb(255, 102, 0);
-    border: 3px solid rgb(251, 255, 0) !important;
-    border-radius: 40px;
-    float: left;
-   cursor: pointer;
-}
-
-.selectedTwo {
-    padding: 28px;
-    width: 5%;
-    min-width: 5%;
-    margin: 1px;
-    z-index: 5;
-    position: relative;
-    background-position: 48% 43%;
-    background-size: 100px 100px;
-    background-color: rgb(80, 80, 80);
-    position: relative;
     border: 3px solid rgb(251, 255, 0) !important;
     border-radius: 40px;
     float: left;
