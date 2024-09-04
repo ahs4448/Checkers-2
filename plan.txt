@@ -1,5 +1,20 @@
-the positions are the pieces
-the values are the empty spaces
+four arrays for movement
+
+upright odd row
+upleft odd row
+up right even row
+up left even row
+
+four arrays for skips
+
+up right odd row skip
+upleft odd row skip
+up right even row skip
+up left even row skip
+
+
+
+put all possible moves into an array, then see if its an even or odd row.
 
 
 
