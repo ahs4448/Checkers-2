@@ -1,4 +1,4 @@
-four arrays for movement
+four arrays for movement.
 
 upright odd row
 upleft odd row
